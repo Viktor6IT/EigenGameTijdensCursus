@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 15;
     private float xBound = 25;
     private float zBound = 25;
+    private float ybound = 0.5f;
     public GameObject projecttilePrefab;
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,14 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > xBound)
         {
             transform.position = new Vector3(xBound, transform.position.y, transform.position.z);
+        }
+        if (transform.position.y < ybound)
+        {
+            transform.position = new Vector3(transform.position.x, ybound, transform.position.z);
+        }
+        if (transform.position.y > ybound)
+        {
+            transform.position = new Vector3(transform.position.x, ybound, transform.position.z);
         }
         if (transform.position.z < -zBound)
         {

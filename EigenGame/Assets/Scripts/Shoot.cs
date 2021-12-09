@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
     public float speed = 40;
     private float xBound = 25;
     private float zBound = 25;
+    private float yBound = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,14 @@ public class Shoot : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (transform.position.y < yBound)
+        {
+            transform.position = new Vector3(transform.position.x, yBound, transform.position.z);
+        }
+        if (transform.position.y > yBound)
+        {
+            transform.position = new Vector3(transform.position.x, yBound, transform.position.z);
+        }
         if (transform.position.z < -zBound)
         {
             Destroy(gameObject);
@@ -38,11 +47,11 @@ public class Shoot : MonoBehaviour
             Destroy(gameObject);
         }
     }
-        private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }
